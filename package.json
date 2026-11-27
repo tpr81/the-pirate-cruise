@@ -1,0 +1,46 @@
+{
+  "name": "tpb-ui",
+  "version": "0.1.0",
+  "description": "Interface moderna com score de confiança explicável (0–100) para buscar metadados em indexadores de torrents (web + app desktop Electron)",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "electron": "electron .",
+    "dist": "electron-builder --publish never",
+    "release": "electron-builder --publish always",
+    "dist:linux": "electron-builder --linux --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:mac": "electron-builder --mac --publish never"
+  },
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.tpr81.tpbcruise",
+    "productName": "The Pirate Cruise",
+    "asar": true,
+    "directories": { "output": "dist" },
+    "files": [
+      "src/**/*",
+      "public/**/*",
+      "config/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": { "target": ["nsis"] },
+    "nsis": { "oneClick": true, "perMachine": false, "createDesktopShortcut": true },
+    "linux": { "target": ["AppImage", "deb"], "category": "Network" },
+    "mac": { "target": ["dmg"], "category": "public.app-category.utilities" },
+    "publish": [{ "provider": "github", "owner": "tpr81", "repo": "tpb-ui" }]
+  }
+}
