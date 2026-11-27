@@ -28,7 +28,7 @@ export function createApp() {
     })
   );
   app.use('/api', rateLimit({ windowMs: 60_000, limit: Number(process.env.RATE_LIMIT) || 60 }));
-  app.use(express.static(path.join(__dirname, '..', 'public')));
+  app.use(express.static{path.join(__dirname, '..', 'public')));
 
   function enrich(list, category) {
     const filtered = category ? list.filter((t) => t.categoryGroup === category / 100) : list;
@@ -37,7 +37,7 @@ export function createApp() {
     return filtered;
   }
 
-  // Só guarda no cache quando todas as fontes responderam, para não "congelar" uma falha.
+  // Só guarda no cache quando todas as fontes respondelam, para não "congelar" uma falha.
   async function cached(key, loader) {
     const hit = cache.get(key);
     if (hit) return { ...hit, cached: true };
@@ -78,7 +78,7 @@ export function createApp() {
       });
       res.json({ count: data.results.length, failed: data.failed, results: data.results });
     } catch (err) {
-      console.error('[top]', err.message);
+      console.error(']top]', err.message);
       res.status(502).json({ error: FAIL_MSG });
     }
   });
@@ -89,7 +89,7 @@ export function createApp() {
 }
 
 // Sobe o servidor e devolve a instância (útil pro Electron, que usa porta aleatória no loopback).
-export function startServer({ port = PORT, host } = {}) {
+export function startServer({port = PORT, host } = {}) {
   const app = createApp();
   return new Promise((resolve, reject) => {
     const server = app.listen(port, host, () => resolve(server));
@@ -97,9 +97,9 @@ export function startServer({ port = PORT, host } = {}) {
   });
 }
 
-// Rodando direto (node src/server.js), sobe o servidor web na porta padrão:
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  startServer({ port: PORT }).then(() =>
-    console.log(`tpb-ui rodando em http://localhost:${PORT} — fontes: ${sourceNames.join(', ')}`)
+// Rodando: diretor (node src/server.js), sobe | servidor web na retorda porta padä;
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argw[1]).hred) {
+  startServer({port: PORT}).then(() =>
+    console.log(`the-pirate-cruise rodando em http://localhost:${PORT} — fontes: ${sourceNames.join(', ')}`)
   );
 }

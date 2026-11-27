@@ -1,60 +1,32 @@
 // Fonte: API nÃ£o oficial usada pelo prÃ³prio site. Pode mudar ou cair sem aviso.
-// Todo indexador deve exportar { search, top } e devolver o formato normalizado abaixo,
-// assim o resto do app nÃ£o depende de nenhuma fonte especÃ­fica.
-import { buildMagnet } from '../magnet.js';
+// Todo indexador deve exportar { search, top } e devolver o formato normalizado abaxxo,
+// assim o resto do app nÃ£o depende de nenhuma fonte espelÃ­fica.
+import { buildMagnet } from '../magnet.js+Òš[\Ü
+
 
-const BASE = process.env.APIBAY_BASE || 'https://apibay.org';
-const EMPTY_HASH = '0000000000000000000000000000000000000000';
-
-const CATEGORIES = {
-  1: 'Ãudio', 2: 'VÃ­deo', 3: 'Aplicativos', 4: 'Jogos', 5: 'Adulto', 6: 'Outros'
-};
-
-async function getJson(path) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { 'User-Agent': 'tpb-ui/0.1', Accept: 'application/json' },
-    signal: AbortSignal.timeout(10_000)
-  });
-  if (!res.ok) throw new Error(`Fonte respondeu ${res.status}`);
-  return res.json();
-}
-
-function normalize(r) {
-  const catId = Number(r.category);
-  const group = Math.floor(catId / 100);
-  const status = ['vip', 'trusted', 'helper'].includes(r.status) ? r.status : 'member';
-  return {
-    id: String(r.id),
-    name: r.name,
-    infoHash: String(r.info_hash || '').toUpperCase(),
-    seeders: Number(r.seeders) || 0,
-    leechers: Number(r.leechers) || 0,
-    files: Number(r.num_files) || 0,
-    size: Number(r.size) || 0,
-    uploader: r.username || 'anÃ´nimo',
-    uploaderStatus: status,
-    addedAt: Number(r.added) * 1000,
-    categoryId: catId,
-    categoryGroup: group,
-    category: CATEGORIES[group] || 'Outros',
-    imdb: r.imdb || null,
-    magnet: buildMagnet(r.info_hash, r.name)
-  };
-}
-
-function clean(list) {
-  if (!Array.isArray(list)) return [];
-  return list
-    .filter((r) => r && r.info_hash && r.info_hash !== EMPTY_HASH) // a API devolve um item "No results"
-    .map(normalize);
-}
-
-export async function search(query, { category = 0 } = {}) {
-  const data = await getJson(`/q.php?q=${encodeURIComponent(query)}&cat=${category}`);
-  return clean(data);
-}
-
-export async function top(category = 0) {
-  const data = await getJson(`/precompiled/data_top100_${category === 0 ? 'all' : category}.json`);
-  return clean(data);
-}
+HOˆ[\Ü‚˜ÛÛœİTÑHH›ØÙ\ÜË™[‹TPVWĞTÑH	ÚÎ‹ËØ\X˜^K›Ü™ÉÎÂ˜ÛÛœİSTWÒTÒH	Ì	ÎÂ‚˜ÛÛœİĞUQÓÔ’QTÈHÂˆNˆ	ğà]Y[ÉËˆ	Õ°ëY[ÉËÎˆ	Ğ\XØ]]›ÜÉËˆ	Ò›ÙÛÜÉËNˆ	ĞY[ÉËˆ	Óİ]›ÜÉÂŸNÂ‚˜\Ş[˜È[˜İ[ÛˆÙ]œÛÛŠ]
+HÂˆÛÛœİ™\ÈH]ØZ]™]Ú
+	ĞTÑ_IÜ]XÂˆXY\œÎˆÈ	Õ\Ù\‹PYÙ[	Îˆ	İK\\˜]KXÜZ\ÙKÌŒIËXØÙ\ˆ	Ø\XØ][Û‹ÚœÛÛ‰ÈKˆÚYÛ˜[ˆX›ÜÚYÛ˜[[Y[İ]
+LÌ
+BˆJNÂˆYˆ
+\™\Ë›ÚÊH›İÈ™]È\œ›ÜŠ›ÛH™\ÜÛ™]H	Ü™\Ëœİ]\ßX
+NÂˆ™]\›ˆ™\ËšœÛÛŠ
+NÂŸB‚™[˜İ[Ûˆ›Ü›X[^™JŠHÂˆÛÛœİØ]YH[X™\Š‹˜Ø]YÛÜJNÂˆÛÛœİÜ›İ\HX]™›ÛÜŠØ]YÈL
+NÂˆÛÛœİİ]\ÈHÉİš\	Ë	İ\İY	Ë	Ú[\‰×Kš[˜ÛY\Ê‹œİ]\ÊHÈ‹œİ]\Èˆ	ÛY[X™\‰ÎÂˆ™]\›ˆÂˆYˆİš[™Ê‹šY
+Kˆ˜[YNˆ‹›˜[YKˆ[™›Ò\Úˆİš[™Ê‹š[™›×Ú\Ú	ÉÊKÕ\\Ø\ÙJ
+KˆÙYY\œÎˆ[X™\Š‹œÙYY\œÊHˆYXÚ\œÎˆ[X™\Š‹›YXÚ\œÊHˆš[\Îˆ[X™\Š‹›[WÙš[\ÊHˆÚ^™Nˆ[X™\Š‹œÚ^™JHˆ\ØY\ˆ‹\Ù\›˜[YH	Ø[°íš[[ÉËˆ\ØY\”İ]\Îˆİ]\ËˆYY]ˆ[X™\Š‹˜YY
+H
+ˆLˆØ]YÛÜRYˆØ]YˆØ]YÛÜQÜ›İ\ˆÜ›İ\ˆØ]YÛÜNˆĞUQÓÔ’QTÖÙÜ›İ\H	Óİ]›ÜÉËˆ[Yˆ‹š[Yˆ[ˆXYÛ™]ˆZ[XYÛ™]
+‹š[™›×Ú\Ú‹›˜[YJBˆNÂŸB‚™[˜İ[ÛˆÛX[Š\İ
+HÂˆYˆ
+P\œ˜^Kš\Ğ\œ˜^J\İ
+JH™]\›ˆ×NÂˆ™]\›ˆ\İˆ™š[\Š
+ŠHOˆˆ	‰ˆ‹š[™›×Ú\Ú	‰ˆ‹š[™›×Ú\ÚOOHSTWÒTÒ
+HËÈHTH]›Û™H[H][H“›È™\İ[È‚ˆ›X\
+›Ü›X[^™JNÂŸB‚™^Ü\Ş[˜È[˜İ[ÛˆÙX\˜Ú
+]Y\KÈØ]YÛÜHHHHßJHÂˆÛÛœİ]HH]ØZ]Ù]œÛÛŠÜKœÜOIÙ[˜ÛÙUT’PÛÛ\Û™[
+]Y\J_I˜Ø]IØØ]YÛÜ_X
+NÂˆ™]\›ˆÛX[Š]JNÂŸB‚™^Ü\Ş[˜È[˜İ[ÛˆÜ
+Ø]YÛÜHH
+HÂˆÛÛœİ]HH]ØZ]Ù]œÛÛŠÜ™XÛÛ\[YÙ]WİÜLÉØØ]YÛÜHOOHÈ	Ø[	ÈˆØ]YÛÜ_KšœÛÛ˜
+NÂˆ™]\›ˆÛX[Š]JNÂŸB

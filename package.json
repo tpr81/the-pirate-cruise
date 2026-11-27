@@ -1,10 +1,10 @@
 {
-  "name": "tpb-ui",
+  "name": "the-pirate-cruise",
   "version": "0.1.0",
   "description": "Interface moderna com score de confiança explicável (0–100) para buscar metadados em indexadores de torrents (web + app desktop Electron)",
-  "type": "module",
+  "type": module,
   "main": "electron/main.js",
-  "author": { "name": "tpr81", "email": "90873741+tpr81@users.noreply.github.com" },
+  "author": { "name": "tpr81", "email": 90873741+tpr81@users.noreply.github.com" },
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
@@ -46,6 +46,6 @@
       "maintainer": "tpr81 <90873741+tpr81@users.noreply.github.com>"
     },
     "mac": { "target": ["dmg"], "category": "public.app-category.utilities" },
-    "publish": [{ "provider": "github", "owner": "tpr81", "repo": "the-pirate-cruise" }]
+    "publish": [{ "provider": "github", "owner": "tpr81", "repo": "the-pirate-cruise  "}]
   }
 }
