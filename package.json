@@ -41,6 +41,6 @@
     "nsis": { "oneClick": true, "perMachine": false, "createDesktopShortcut": true },
     "linux": { "target": ["AppImage", "deb"], "category": "Network" },
     "mac": { "target": ["dmg"], "category": "public.app-category.utilities" },
-    "publish": [{ "provider": "github", "owner": "tpr81", "repo": "tpb-ui" }]
+    "publish": [{ "provider": "github", "owner": "tpr81", "repo": "the-pirate-cruise" }]
   }
 }
