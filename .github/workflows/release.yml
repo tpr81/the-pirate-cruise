@@ -27,6 +27,10 @@ jobs:
       - name: Instala dependências
         run: npm install --no-audit --no-fund
 
+      - name: Dependências de empacotamento (só Linux — AppImage precisa de libfuse2, .deb de fakeroot)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libfuse2 fakeroot
+
       - name: Compila e publica no Release do GitHub
         run: npx electron-builder --publish always
         env:
