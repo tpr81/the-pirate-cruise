@@ -1,0 +1,32 @@
+{
+  "_ajuda": "Cada item é uma fonte. enabled=false desativa sem apagar. Veja o README para os campos.",
+  "sources": [
+    {
+      "name": "apibay",
+      "type": "apibay",
+      "enabled": true
+    },
+    {
+      "name": "yts",
+      "type": "json",
+      "enabled": false,
+      "_aviso": "Exemplo NÃO testado. O domínio muda com frequência: confirme a URL atual antes de ativar.",
+      "searchUrl": "https://yts.mx/api/v2/list_movies.json?query_term={q}&limit=50",
+      "topUrl": "https://yts.mx/api/v2/list_movies.json?sort_by=download_count&limit=50",
+      "listPath": "data.movies",
+      "expand": "torrents",
+      "categoryGroup": 2,
+      "constants": { "uploader": "YTS", "uploaderStatus": "member" },
+      "fields": {
+        "id": "hash",
+        "name": "{^.title} ({^.year}) [{quality}] [{type}]",
+        "infoHash": "hash",
+        "seeders": "seeds",
+        "leechers": "peers",
+        "size": "size_bytes",
+        "addedAt": "date_uploaded_unix"
+      },
+      "addedUnit": "s"
+    }
+  ]
+}
