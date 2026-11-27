@@ -29,12 +29,14 @@ npm run dist            # gera os binários em dist/ (sem publicar)
 
 ### 📦 Releases automáticos
 
-Cada tag `v*` dispara o workflow `.github/workflows/release.yml`, que compila no CI do GitHub para **Windows (.exe), Linux (.AppImage/.deb) e macOS (.dmg)** e publica tudo nos [Releases](https://github.com/tpr81/tpb-ui/releases) sozinho:
+Cada tag `v*` dispara o workflow `.github/workflows/release.yml`, que compila no CI do GitHub para **Windows (.exe), Linux (.AppImage/.deb) e macOS (.dmg)** e publica tudo nos [Releases](https://github.com/tpr81/the-pirate-cruise/releases) sozinho:
 
 ```bash
+git clone https://github.com/tpr81/the-pirate-cruise.git
+cd the-pirate-cruise
 git tag v0.1.0
 git push origin v0.1.0
-# em alguns minutos: github.com/tpr81/tpb-ui/releases/tag/v0.1.0
+# em alguns minutos: github.com/tpr81/the-pirate-cruise/releases/tag/v0.1.0
 ```
 
 > Os binários são gerados no CI (x64/ARM64) — não dá pra compilar numa máquina ARM 32-bit, mas o GitHub Actions faz de graça. Sem certificado de code signing, o Windows mostra aviso de SmartScreen no primeiro download (normal em projeto sem certificado).
@@ -133,6 +135,7 @@ O arquivo vem com `apibay` ativo e um exemplo de `yts` **desativado e não testa
 - **Redis** no lugar do cache em memória se rodar em mais de uma instância.
 - **Docker** + proxy reverso (Caddy/Nginx) para publicar a versão web.
 - **electron-updater** para o app desktop se atualizar sozinho pelos Releases.
+- Commitar o `package-lock.json` (gerado com `npm install`) para habilitar `cache: npm` nos workflows.
 
 ## Avisos
 
