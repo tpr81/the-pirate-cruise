@@ -1,0 +1,31 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instala dependências
+        run: npm install --no-audit --no-fund
+
+      - name: Checa sintaxe de todos os JS
+        run: |
+          for f in src/server.js src/scoring.js src/cache.js src/magnet.js src/sources/*.js electron/main.js electron/preload.cjs public/app.js; do
+            node --check "$f"
+          done
+
+      - name: Sobe o servidor e testa /api/health
+        run: |
+          node src/server.js &
+          SERVER_PID=$!
+          sleep 2
+          curl -fsS http://localhost:3000/api/health
+          kill $SERVER_PID
