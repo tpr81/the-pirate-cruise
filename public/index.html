@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Pirate Cruise — busca de torrents com score de confiança</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/" aria-label="The Pirate Cruise, página inicial">The Pirate Cruise</a>
+    <form id="searchForm" class="search" role="search">
+      <input id="q" type="search" placeholder="Buscar por nome, ex.: ubuntu 24.04" autocomplete="off" minlength="2" required>
+      <button type="submit">Buscar</button>
+    </form>
+    <button id="toggleFilters" class="ghost only-mobile" aria-expanded="false" aria-controls="filters">Filtros</button>
+  </header>
+
+  <div class="layout">
+    <aside id="filters" class="filters" aria-label="Filtros">
+      <fieldset>
+        <legend>Confiança</legend>
+        <label class="check"><input type="checkbox" id="onlyTrusted"> Só uploaders VIP e confiáveis</label>
+        <label class="check"><input type="checkbox" id="hideRisk" checked> Esconder com sinais de risco</label>
+        <label class="range">Score mínimo: <output id="minScoreOut">0</output>
+          <input type="range" id="minScore" min="0" max="100" step="5" value="0">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Categoria</legend>
+        <select id="cat">
+          <option value="0">Todas</option>
+          <option value="100">Áudio</option>
+          <option value="200">Vídeo</option>
+          <option value="300">Aplicativos</option>
+          <option value="400">Jogos</option>
+          <option value="600">Outros</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Qualidade (vídeo)</legend>
+        <select id="quality">
+          <option value="">Qualquer</option>
+          <option value="2160p|4k">4K</option>
+          <option value="1080p">1080p</option>
+          <option value="720p">720p</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Saúde</legend>
+        <label class="range">Seeders mínimos: <output id="minSeedsOut">1</output>
+          <input type="range" id="minSeeds" min="0" max="200" step="1" value="1">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ordenar por</legend>
+        <select id="sort">
+          <option value="trust">Confiança</option>
+          <option value="seeders">Seeders</option>
+          <option value="newest">Mais recentes</option>
+          <option value="size">Maior tamanho</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sua lista</legend>
+        <label class="check"><input type="checkbox" id="onlyFavs"> Só favoritos</label>
+        <p class="hint"><span id="blockCount">0</span> uploaders bloqueados</p>
+        <button type="button" id="clearBlocks" class="ghost small">Limpar bloqueios</button>
+      </fieldset>
+    </aside>
+
+    <main>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <ol id="results" class="results"></ol>
+    </main>
+  </div>
+
+  <footer class="footer">@tpr81</footer>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
