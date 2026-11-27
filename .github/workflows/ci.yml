@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          # sem cache: npm — o cache exige package-lock.json, que ainda não está commitado
 
       - name: Instala dependências
         run: npm install --no-audit --no-fund
